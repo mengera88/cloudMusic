@@ -1,7 +1,29 @@
 .g-head{
     height: 42px;
     line-height: 42px;
-    li{
-        display: inline-block;
+    background: #C10D0C;
+    color: #fff;
+    min-width: 1200px;
+    ul {
+        width: 1000px;
+        margin: 0 auto;
+        li {
+            float: left;
+            cursor: pointer;
+            &:last-child {
+                float: right;
+            }
+            &:hover{
+                background: #f70404;
+            }
+            a {
+                padding: 0 10px;
+                color: #fff;
+                display: block;
+            }
+            .router-link-exact-active{
+                background: #f70404;
+            }
+        }
     }
 }
