@@ -1,9 +1,17 @@
+html,body{
+    height: 100%;
+    overflow: hidden;
+}
 .g-head{
     height: 42px;
     line-height: 42px;
-    background: #C10D0C;
+    background: $topic-color;
     color: #fff;
     min-width: 1200px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
     ul {
         width: 1000px;
         margin: 0 auto;
@@ -14,7 +22,7 @@
                 float: right;
             }
             &:hover{
-                background: #f70404;
+                background: $sub-topic-color;
             }
             a {
                 padding: 0 10px;
@@ -22,8 +30,12 @@
                 display: block;
             }
             .router-link-exact-active{
-                background: #f70404;
+                background: $sub-topic-color;
             }
         }
     }
+}
+.g-body{
+    height: 100%;
+    padding-top: 42px;
 }

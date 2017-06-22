@@ -1,22 +1,14 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+  <div class="login">
+    <div class="wrap">
+      <div class="form">
+        <input type="text" id="phone" placeholder="请输入手机号" v-model.trim="user">
+        <input type="text" id="password" placeholder="请输入密码" v-model="password">
+      </div>
+      <div class="submit">
+        <button class="btn-base" @click="handleSubmit">登录</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -26,28 +18,56 @@ export default {
   data() {
     return {
       msg: 'Welcome to Your login page',
+      user: '',
+      password: '',
     };
+  },
+  methods: {
+    handleSubmit() {
+      console.log(this.user, this.password);
+    },
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
+<style scoped lang="scss">
+@import '../style/variable.scss';
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+.login{
+  height: 100%;
+  position: relative;
+  .wrap{
+    width: 500px;
+    height: 300px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 12px 3px #dedede;
+    .form {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      transform: translateY(-50%);
+      height: 90px;
+      input {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        height: 42px;
+        width: 300px;
+        padding-left: 10px;
+      }
+    }
+    .submit {
+      position: absolute;
+      bottom: 40px;
+      text-align: center;
+      width: 100%;
+    }
+  }
 }
 </style>

@@ -1,0 +1,15 @@
+.btn-base {
+    padding: 5px 20px;
+    color: #fff;
+    border-radius: 2px;
+    background: $topic-color;
+    border: none;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+    &:hover {
+        background: $topic-color-lighter;
+    }
+    &:focus{
+        outline: none;
+    }
+}
