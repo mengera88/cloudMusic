@@ -1,3 +1,10 @@
 export const state = {
-  cookie: '33',
+  isLogin: false,
+  cookie: '',
+  userInfo: {
+    nick: null,
+    ulevel: null,
+    uid: null,
+    portrait: null,
+  },
 };

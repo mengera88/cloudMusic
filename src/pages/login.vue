@@ -2,8 +2,8 @@
   <div class="login">
     <div class="wrap">
       <div class="form">
-        <input type="text" id="phone" placeholder="请输入手机号" v-model.trim="user">
-        <input type="text" id="password" placeholder="请输入密码" v-model="password">
+        <input type="phone" id="phone" placeholder="请输入手机号" v-model.trim="user">
+        <input type="password" id="password" placeholder="请输入密码" v-model="password">
       </div>
       <div class="submit">
         <button class="btn-base" @click="handleSubmit">登录</button>
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+// import { mapActions } from 'vuex';
+
 export default {
   name: 'login',
   data() {
@@ -23,8 +25,12 @@ export default {
     };
   },
   methods: {
+    // ...mapActions(['login']),
     handleSubmit() {
-      console.log(this.user, this.password);
+      this.$store.dispatch('login', {
+        phone: this.user,
+        password: this.password,
+      });
     },
   },
 };
@@ -41,7 +47,7 @@ export default {
     width: 500px;
     height: 300px;
     border: 1px solid #ccc;
-    border-radius: 2px;
+    border-radius: 6px;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -52,14 +58,15 @@ export default {
       top: 50%;
       width: 100%;
       transform: translateY(-50%);
-      height: 90px;
       input {
         display: block;
         margin: 0 auto;
-        margin-bottom: 10px;
+        margin-bottom: 30px;
         height: 42px;
         width: 300px;
         padding-left: 10px;
+        border: 1px solid #dedede;
+        border-radius: 2px;
       }
     }
     .submit {

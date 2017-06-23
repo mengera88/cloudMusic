@@ -16,6 +16,7 @@ html,body{
         width: 1000px;
         margin: 0 auto;
         li {
+            padding: 0 10px;
             float: left;
             cursor: pointer;
             &:last-child {
@@ -25,13 +26,12 @@ html,body{
                 background: $sub-topic-color;
             }
             a {
-                padding: 0 10px;
                 color: #fff;
                 display: block;
             }
-            .router-link-exact-active{
-                background: $sub-topic-color;
-            }
+        }
+        .router-link-exact-active{
+            background: $sub-topic-color;
         }
     }
 }
