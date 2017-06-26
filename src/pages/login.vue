@@ -2,8 +2,15 @@
   <div class="login">
     <div class="wrap">
       <div class="form">
-        <input type="phone" id="phone" placeholder="请输入手机号" v-model.trim="user">
-        <input type="password" id="password" placeholder="请输入密码" v-model="password">
+        <input type="phone" id="phone" placeholder="请输入手机号" v-model.trim.number="user" v-on:blur="checkPhone" maxlength=11>
+        <p>
+          <span v-show="isShow1">请输入正确的手机号</span>
+          <span v-show="isShow2">此手机号尚未注册</span>
+        </p>
+        <input type="password" id="password" placeholder="请输入密码" v-model="password" v-on:blur="checkPassword" maxlength=12>
+        <p>
+          <span v-show="isShow3">请输入正确的密码</span>
+        </p>
       </div>
       <div class="submit">
         <button class="btn-base" @click="handleSubmit">登录</button>
@@ -13,7 +20,6 @@
 </template>
 
 <script>
-// import { mapActions } from 'vuex';
 
 export default {
   name: 'login',
@@ -22,14 +28,34 @@ export default {
       msg: 'Welcome to Your login page',
       user: '',
       password: '',
+      isShow1: false,
+      isShow2: false,
+      isShow3: false,
     };
   },
   methods: {
+    // ...mapActions(['login']),
     handleSubmit() {
       this.$store.dispatch('login', {
         phone: this.user,
         password: this.password,
       });
+    },
+    checkPhone() {
+      const phoneReg = /^1[3|4|5|7|8][0-9]\d{8}$/;
+      if (!phoneReg.test(this.user)) {
+        this.isShow1 = true;
+      } else if (phoneReg.test(this.user)) {
+        this.isShow1 = false;
+      }
+    },
+    checkPassword() {
+      const passwordReg = /^[A-Za-z0-9]{6,12}$/;
+      if (!passwordReg.test(this.password)) {
+        this.isShow3 = true;
+      } else if (passwordReg.test(this.user)) {
+        this.isShow3 = false;
+      }
     },
   },
 };
@@ -57,10 +83,16 @@ export default {
       top: 50%;
       width: 100%;
       transform: translateY(-50%);
+      p{
+        height:30px;
+        margin-left: 100px;
+        line-height: 30px;
+        font-size: 12px;
+        color:#C10D0C;
+      };
       input {
         display: block;
         margin: 0 auto;
-        margin-bottom: 30px;
         height: 42px;
         width: 300px;
         padding-left: 10px;
