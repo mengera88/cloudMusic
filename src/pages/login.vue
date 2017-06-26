@@ -4,7 +4,7 @@
       <div class="form">
         <input type="phone" id="phone" placeholder="请输入手机号" v-model.trim.number="user" v-on:blur="checkPhone" maxlength=11>
         <p>
-          <span v-show="isPhoneValidate ">请输入正确的手机号</span>
+          <span v-show="isPhoneValidate">请输入正确的手机号</span>
           <span v-show="isEmptyPhone">此手机号尚未注册</span>
         </p>
         <input type="password" id="password" placeholder="请输入密码" v-model="password" v-on:blur="checkPassword" maxlength=12>
