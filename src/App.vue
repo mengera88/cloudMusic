@@ -8,7 +8,8 @@
         <router-link tag="li" to='/song_list'>歌单</router-link>
         <router-link tag="li" to='/dj'>主播电台</router-link>
         <router-link tag="li" to='/new_music'>最新音乐</router-link>
-        <router-link tag="li" to='/login'>登录</router-link>
+        <router-link v-if="!isLogin" tag="li" to='/login'>登录</router-link>
+        <router-link v-else tag="li" to='/user'>{{userInfo.nick}}</router-link>
       </ul>
     </div>
     <div class="g-body">
@@ -18,8 +19,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'app',
+  computed: {
+    ...mapState([
+      'isLogin',
+      'userInfo',
+    ]),
+  },
 };
 </script>
 

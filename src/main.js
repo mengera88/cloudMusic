@@ -20,22 +20,4 @@ new Vue({
   store,
   template: '<App/>',
   components: { App },
-  // 监听路由检查登录
-  // watch: {
-  //   $route: 'checkLogin',
-  // },
-  // created() {
-  //   this.checkLogin();
-  // },
-  // methods: {
-  //   checkLogin() {
-  //     if (!this.getCookie('session')) {
-  //       // 如果没有登录状态则跳转到登录页
-  //       this.$router.push('/login');
-  //     } else {
-  //       // 否则跳转到登录后的页面
-  //       this.$router.push('/user_info');
-  //     }
-  //   },
-  // },
 });
