@@ -20,4 +20,12 @@ new Vue({
   store,
   template: '<App/>',
   components: { App },
+  // watch: {
+  //   $route: 'checkLogin',
+  // },
+  // methods: {
+  //   checkLogin() {
+  //     console.log();
+  //   },
+  // },
 });

@@ -20,14 +20,34 @@
 
 <script>
 import { mapState } from 'vuex';
+import { paserCookie } from './util/util';
 
 export default {
   name: 'app',
+  watch: {
+    $route: 'checkLogin',
+  },
+  created() {
+    this.checkLogin();
+  },
   computed: {
     ...mapState([
       'isLogin',
       'userInfo',
     ]),
+  },
+  methods: {
+    checkLogin() {
+      const cookieObj = paserCookie(document.cookie);
+      if (cookieObj.userId) {
+        this.$store.commit('isLogin', true);
+      } else {
+        this.$store.commit('isLogin', false);
+      }
+      if (!this.isLogin) {
+        this.$router.push('/login');
+      }
+    },
   },
 };
 </script>
