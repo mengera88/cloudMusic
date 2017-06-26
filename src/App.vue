@@ -41,8 +41,18 @@ export default {
       const cookieObj = paserCookie(document.cookie);
       if (cookieObj.userId) {
         this.$store.commit('isLogin', true);
+        this.$store.commit('updateUserInfo', {
+          nick: cookieObj.nick,
+          ulevel: cookieObj.userType,
+          uid: cookieObj.userId,
+        });
       } else {
         this.$store.commit('isLogin', false);
+        this.$store.commit('updateUserInfo', {
+          nick: null,
+          ulevel: null,
+          uid: null,
+        });
       }
       if (!this.isLogin) {
         this.$router.push('/login');

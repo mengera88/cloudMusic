@@ -10,18 +10,22 @@ export const login = ({ commit }, userReqInfo) => {
     },
   })
   .then((res) => {
+    console.log(res);
     if (res.status === 200) {
       const cookieObj = res.data.bindings[0];
-      Object.keys(cookieObj).forEach((key) => {
-        document.cookie = `${key}=${cookieObj[key]}; `;
-      });
       commit('updateCookie', cookieObj);
       commit('isLogin', true);
+      Object.keys(cookieObj).forEach((key) => {
+        document.cookie = `${key}=${cookieObj[key]};`;
+      });
       const userInfo = {
         nick: res.data.profile.nickname,
         ulevel: res.data.profile.userType,
         uid: res.data.profile.userId,
       };
+      Object.keys(userInfo).forEach((key) => {
+        document.cookie = `${key}=${userInfo[key]};`;
+      });
       commit('updateUserInfo', userInfo);
       window.location = '#/user';
     } else if (res.status === 415) {
