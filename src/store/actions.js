@@ -12,6 +12,9 @@ export const login = ({ commit }, userReqInfo) => {
   .then((res) => {
     if (res.status === 200) {
       const cookieObj = res.data.bindings[0];
+      Object.keys(cookieObj).forEach((key) => {
+        document.cookie = `${key}=${cookieObj[key]}; `;
+      });
       commit('updateCookie', cookieObj);
       commit('isLogin', true);
       const userInfo = {
