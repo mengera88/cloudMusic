@@ -5,6 +5,5 @@ export const state = {
     nick: null,
     ulevel: null,
     uid: null,
-    portrait: null,
   },
 };

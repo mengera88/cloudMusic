@@ -25,7 +25,6 @@ export default {
     };
   },
   methods: {
-    // ...mapActions(['login']),
     handleSubmit() {
       this.$store.dispatch('login', {
         phone: this.user,
