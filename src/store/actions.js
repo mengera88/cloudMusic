@@ -19,7 +19,7 @@ export const login = ({ commit }, userReqInfo) => {
         document.cookie = `${key}=${cookieObj[key]};`;
       });
       const userInfo = {
-        nick: res.data.profile.nickname,
+        nickname: res.data.profile.nickname,
         ulevel: res.data.profile.userType,
         uid: res.data.profile.userId,
       };

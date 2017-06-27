@@ -9,7 +9,7 @@
         <router-link tag="li" to='/dj'>主播电台</router-link>
         <router-link tag="li" to='/new_music'>最新音乐</router-link>
         <router-link v-if="!isLogin" tag="li" to='/login'>登录</router-link>
-        <router-link v-else tag="li" to='/user'>{{userInfo.nick}}</router-link>
+        <router-link v-else tag="li" to='/user'>{{userInfo.nickname}}</router-link>
       </ul>
     </div>
     <div class="g-body">
@@ -42,14 +42,14 @@ export default {
       if (cookieObj.userId) {
         this.$store.commit('isLogin', true);
         this.$store.commit('updateUserInfo', {
-          nick: cookieObj.nick,
+          nickname: cookieObj.nickname,
           ulevel: cookieObj.userType,
           uid: cookieObj.userId,
         });
       } else {
         this.$store.commit('isLogin', false);
         this.$store.commit('updateUserInfo', {
-          nick: null,
+          nickname: null,
           ulevel: null,
           uid: null,
         });
