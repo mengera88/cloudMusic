@@ -1,15 +1,18 @@
 <template>
   <div class="user">
    <h1>用户名</h1>
-   <div>{{userInfo.nickname}}</div>
+   <div @click="getUserMusic">{{userInfo.nickname}}</div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import axios from 'axios';
+
+const domain = 'http://localhost:3000';
 
 export default {
-  name: 'hello',
+  name: 'user',
   data() {
     return {
       msg: 'Welcome to user\'s page',
@@ -19,6 +22,16 @@ export default {
     ...mapState([
       'userInfo',
     ]),
+  },
+  methods: {
+    getUserMusic() {
+      axios.get(`${domain}/user/subcount`, {
+        uid: this.userInfo.userId,
+      })
+      .then((res) => {
+        console.log(res);
+      });
+    },
   },
 };
 </script>
