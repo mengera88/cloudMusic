@@ -13,3 +13,27 @@
         outline: none;
     }
 }
+.btn-gray {
+    padding: 5px 20px;
+    color: #999;
+    border-radius: 2px;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #dedede;
+    transition: background .2s ease-in-out;
+    &:hover {
+        background: #f1f1f1;
+    }
+    &:focus{
+        outline: none;
+    }
+}
+
+// 动效
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
+}
