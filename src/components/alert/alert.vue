@@ -1,3 +1,15 @@
+/**
+* Alert组件，只有简单的confirm和inform，类似通知和一些确认操作
+* 使用方法： 
+* import alert from '@/components/alert/alert';
+* <alert ref="alert" @cancel="cancel" @sure="sure">
+*     这是弹出框信息
+* </alert>
+* 可加属性
+* :type = 'inform' || 'confirm', 默认'confirm',
+* :title {String} 弹出框的标题
+* :message {String} 通知的消息名称
+*/
 <template>
 <transition name='fade'>
   <div class="alert" v-show="showAlert">
