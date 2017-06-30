@@ -9,6 +9,7 @@ import store from './store';
 
 import './style/index.scss';
 
+
 axios.defaults.withCredentials = true;
 Vue.config.productionTip = false;
 Vue.prototype.http = axios;

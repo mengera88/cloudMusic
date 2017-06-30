@@ -22,6 +22,7 @@
 import { mapState } from 'vuex';
 import { paserCookie } from './util/util';
 
+
 export default {
   name: 'app',
   watch: {

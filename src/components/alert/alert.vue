@@ -12,7 +12,7 @@
 */
 <template>
 <transition name='fade'>
-  <div class="alert" v-show="showAlert">
+  <div class="alert" v-if="showAlert">
     <div class="wrap">
       <div class="head">{{title}}</div>
       <div class="body">

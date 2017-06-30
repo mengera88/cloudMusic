@@ -2,6 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <button @click="showAlert">点我</button>
+    <button @click="showToast">再点我</button>
     <alert ref="alert" @cancel="cancel" @sure="sure">
       这是弹出框信息
     </alert>
@@ -10,6 +11,7 @@
 
 <script>
 import alert from '@/components/alert/alert';
+import Toast from '@/components/toast/index';
 
 export default {
   name: 'hello',
@@ -20,7 +22,19 @@ export default {
   },
   methods: {
     showAlert() {
-      this.$refs.alert.show();
+      // this.$refs.alert.show();
+      Toast({
+        message: '我来了',
+        type: 'warning',
+        duration: 2000,
+      });
+    },
+    showToast() {
+      Toast({
+        message: '我也来',
+        type: 'error',
+        duration: 2000,
+      });
     },
     cancel() {
       this.$refs.alert.close();
