@@ -3,14 +3,14 @@
     <h1>{{ msg }}</h1>
     <button @click="showAlert">点我</button>
     <button @click="showToast">再点我</button>
-    <alert ref="alert" @cancel="cancel" @sure="sure">
+    <!--<alert ref="alert" @cancel="cancel" @sure="sure">
       这是弹出框信息
-    </alert>
+    </alert>-->
   </div>
 </template>
 
 <script>
-import alert from '@/components/alert/alert';
+import alert from '@/components/alert/index';
 import Toast from '@/components/toast/index';
 
 export default {
@@ -22,11 +22,12 @@ export default {
   },
   methods: {
     showAlert() {
-      // this.$refs.alert.show();
-      Toast({
-        message: '我来了',
-        type: 'warning',
-        duration: 2000,
+      alert.confirm({
+        message: '这是一个弹出框',
+        context: this,
+        cancelBtn() {
+          this.showToast();
+        },
       });
     },
     showToast() {

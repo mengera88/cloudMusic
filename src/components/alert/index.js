@@ -1,51 +1,30 @@
 import Vue from 'vue';
 
-import Alert from './alert';
+import alert from './alert';
 
+const AlertConstructor = Vue.extend(alert);
 
-/**
- *
- * @param {Object} options
- * title: string
- * body: string 待定
- */
+const div = document.createElement('div');
 
-const AlertInstance = (options) => {
-  if (!options) {
-    options = {};
-  }
-
-  // 处理props
-  const propsData = Object.assign({}, options);
-
-  const div = document.createElement('div');
+AlertConstructor.show = (options) => {
   document.body.appendChild(div);
-
-  const ShowAlert = Vue.extend(Alert);
-
-
-  const alert = new ShowAlert({
-    el: div,
-    data() {
-      return {
-        message: options.message ? options.message : '提示',
-      };
-    },
+  options.type = 'inform';
+  const propsData = Object.assign({}, options);
+  console.log(propsData);
+  const alertInstance = new AlertConstructor({
     propsData,
-  });
-
-  alert.$on('sure', () => {
-    console.log('父点击了确定');
-  });
-
-  alert.$on('cancel', () => {
-    alert.close();
-    console.log('父点击了取消');
-    document.body.removeChild(div);
-  });
-
-  return alert.show();
+  }).$mount(div);
+  alertInstance.show();
+};
+AlertConstructor.confirm = (options) => {
+  document.body.appendChild(div);
+  options.type = 'confirm';
+  const propsData = Object.assign({}, options);
+  console.log(propsData);
+  const alertInstance = new AlertConstructor({
+    propsData,
+  }).$mount(div);
+  alertInstance.show();
 };
 
-
-export default AlertInstance;
+export default AlertConstructor;

@@ -57,13 +57,28 @@ export default {
         return value === 'confirm' || value === 'inform';
       },
     },
+    sureBtn: {
+      type: Function,
+    },
+    cancelBtn: {
+      type: Function,
+    },
+    context: {
+      type: Object,
+    },
   },
   methods: {
     cancel() {
-      this.$emit('cancel');
+      if (this.cancelBtn) {
+        this.cancelBtn.apply(this.context);
+      }
+      this.close();
     },
     sure() {
-      this.$emit('sure');
+      if (this.sureBtn) {
+        this.sureBtn.apply(this.context);
+      }
+      this.close();
     },
     show() {
       this.showAlert = true;
