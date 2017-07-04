@@ -8,6 +8,7 @@ import Dj from '@/pages/dj';
 import NewMusic from '@/pages/new_music';
 import Login from '@/pages/login';
 import User from '@/pages/user';
+import SongDetail from '@/pages/song_detail';
 
 Vue.use(Router);
 
@@ -52,6 +53,11 @@ export default new Router({
       path: '/user',
       name: 'user',
       component: User,
+    },
+    {
+      path: '/song_detail',
+      name: 'song_detail',
+      component: SongDetail,
     },
   ],
 });
