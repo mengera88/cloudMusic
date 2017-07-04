@@ -10,7 +10,6 @@ AlertConstructor.show = (options) => {
   document.body.appendChild(div);
   options.type = 'inform';
   const propsData = Object.assign({}, options);
-  console.log(propsData);
   const alertInstance = new AlertConstructor({
     propsData,
   }).$mount(div);
@@ -20,7 +19,6 @@ AlertConstructor.confirm = (options) => {
   document.body.appendChild(div);
   options.type = 'confirm';
   const propsData = Object.assign({}, options);
-  console.log(propsData);
   const alertInstance = new AlertConstructor({
     propsData,
   }).$mount(div);
