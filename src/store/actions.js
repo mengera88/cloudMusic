@@ -37,3 +37,58 @@ export const login = ({ commit }, userReqInfo) => {
     console.log(err);
   });
 };
+
+export const getUserMusic = ({ commit, state }) => {
+  axios.get(`${domain}/user/follows`, {
+    params: {
+      uid: state.userInfo.uid,
+    },
+  })
+  .then((res) => {
+    console.log(res);
+    const usermusic = res.data.follow;
+    commit('getUserMusic', usermusic);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+};
+
+export const getFans = ({ commit, state }) => {
+  axios.get(`${domain}/user/followeds`, {
+    params: {
+      uid: state.userInfo.uid,
+    },
+  })
+  .then((res) => {
+    const fans = res.data.followeds;
+    console.log(fans);
+    commit('getFans', fans);
+  });
+};
+
+export const getDynamic = ({ commit, state }) => {
+  axios.get(`${domain}/user/event`, {
+    params: {
+      uid: state.userInfo.uid,
+    },
+  })
+  .then((res) => {
+    const dynamic = res.data.events;
+    commit('getDynamic', dynamic);
+  });
+};
+
+export const getRecord = ({ commit, state }) => {
+  axios.get(`${domain}/user/playlist`, {
+    params: {
+      uid: state.userInfo.uid,
+      // type: 1,
+    },
+  })
+  .then((res) => {
+    console.log(res);
+    const record = res.data.playlist;
+    commit('getRecord', record);
+  });
+};

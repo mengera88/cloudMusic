@@ -6,4 +6,8 @@ export const state = {
     ulevel: null,
     uid: null,
   },
+  dynamic: [],
+  usermusic: [],
+  fans: [],
+  record: [],
 };

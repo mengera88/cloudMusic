@@ -37,14 +37,20 @@
                 编辑个人资料
               </a>
              </div>
-             <ul class="right-title2">
-               <li :key="index" v-for="(item, index) in items1">
+             <div class="right-title2">
                 <a href="">
-                  <p class="fs20">{{item.number}}</p>
-                  <p>{{item.title}}</p>
+                  <p class="fs20">{{usermusic.length}}</p>
+                  <p>粉丝</p>
                 </a>
-               </li>
-             </ul>
+                <a href="">
+                  <p class="fs20">{{dynamic.length}}</p>
+                  <p>动态</p>
+                </a>
+                <a href="">
+                  <p class="fs20">{{fans.length}}</p>
+                  <p>关注</p>
+                </a>
+            </div>
              <div class="mt20">所在地区：<span>浙江省 - 杭州市</span></div>
              <div class="mt15 right-title3">社交网络：<span class="li-icon1"></span><span class="li-icon2"></span></div>
           </div>
@@ -78,25 +84,17 @@
           <p class="mt10 tar"><a href="">查看更多>></a></p>
         </div>
         <div>
-           <p class="fs16 content-title">我创建的歌单（{{}}）</p>
+           <p class="fs16 content-title">我创建的歌单（{{record.length}}）</p>
            <ul class="clearfix">
-             <li class="right-pic">
-
-             </li>
-               <li class="right-pic">
-
-             </li>
-               <li class="right-pic">
-
-             </li>
-               <li class="right-pic">
-
-             </li>
-               <li class="right-pic">
-
-             </li>
-               <li class="right-pic">
-
+             <li :class="((index + 1) % 5 !== 0 ? 'mr39' : '')" class="right-pic" :key="index" v-for="(item, index) in items3" >
+              <!--<a href="">
+                <img src="" alt="">
+              </a>
+              <p>{{record.length?record[0].name:''}}</p>-->
+              <a href="">
+                <img :src="record[0].coverImgUrl" alt="图片" style="width: 100px; height: 100px; ">
+              </a>
+              <p class="mt5">{{index+1}}{{record.length?record[0].name:''}}</p>
              </li>
            </ul>
         </div>
@@ -105,7 +103,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 // import axios from 'axios';
 import img1 from '../assets/logo1.jpg';
 import img2 from '../assets/logo2.jpg';
@@ -121,7 +119,6 @@ export default {
   name: 'user',
   data() {
     return {
-      usemusic: [],
       msg: 'Welcome to user\'s page',
       isShow: true,
       isTri1: true,
@@ -133,11 +130,6 @@ export default {
       { url: img4, title: '怀旧金曲', number: 3 },
       { url: img5, title: '伤感情歌', number: 9 },
       ],
-      items1: [
-        { title: '动态', number: 1 },
-        { title: '关注', number: 3 },
-        { title: '粉丝', number: 8 },
-      ],
       items2: [
         { title: '谁明浪子心', name: '王杰', number: 1 },
         { title: '雨一直下', name: '张宇', number: 3 },
@@ -146,22 +138,54 @@ export default {
         { title: '雨一直下1', name: '张宇1', number: 3 },
         { title: '三打白骨精1', name: '齐天大圣1', number: 8 },
       ],
+      items3: [
+      { url: img1, title: '我喜欢的音乐', number: 1 },
+      { url: img2, title: '乡村风', number: 3 },
+      { url: img3, title: 'DJ', number: 8 },
+      { url: img4, title: '怀旧金曲', number: 3 },
+      { url: img5, title: '伤感情歌', number: 9 },
+      { url: img4, title: '怀旧金曲', number: 3 },
+      { url: img5, title: '伤感情歌', number: 9 },
+      { url: img1, title: '我喜欢的音乐', number: 1 },
+      { url: img2, title: '乡村风', number: 3 },
+      { url: img3, title: 'DJ', number: 8 },
+      { url: img4, title: '怀旧金曲', number: 3 },
+      { url: img5, title: '伤感情歌', number: 9 },
+      { url: img4, title: '怀旧金曲', number: 3 },
+      { url: img5, title: '伤感情歌', number: 9 },
+      ],
     };
   },
   computed: {
     ...mapState([
       'userInfo',
+      'usermusic',
+      'dynamic',
+      'fans',
+      'record',
     ]),
   },
-  // created() {
-  //   // this.getUserMusic();
-  // },
+  created() {
+    this.getUserMusic();
+    this.getFans();
+    this.getDynamic();
+    this.getMusic();
+    this.getRecord();
+  },
   methods: {
-    getUserMusic() {
+    ...mapActions([
+      'getUserMusic',
+      'getFans',
+      'getDynamic',
+      'getRecord',
+    ]),
+    getMusic() {
       this.http.get(`${domain}/user/subcount`)
       .then((res) => {
         console.log(res);
-        this.usemusic = res.data.playlists;
+      })
+      .catch((err) => {
+        console.log(err);
       });
     },
     change() {
@@ -321,17 +345,16 @@ export default {
 }
 .right-title2{
   height:40px;
-  >li{
-    float:left;
-    padding:5px 40px 5px 0;
    >a{
+     float:left;
+    padding:5px 40px 5px 0;
     color:#999;
     &:hover{
       color:#2d8cf0;
       }
     }
   }
-}
+
 .right-title3>span{
   display: inline-block;
   height:20px;
@@ -390,9 +413,15 @@ export default {
 }
 .right-pic{
   float:left;
-  width:140px;
+  width:150px;
   height:165px;
   border: 1px solid;
   margin-top: 20px;
+  >a{
+    display: inline-block;
+    width:150px;
+    height:140px;
+    text-align: center;
+  }
 }
 </style>
