@@ -25,7 +25,7 @@ export default {
   props: {
     playInfo: {
       type: Object,
-      requred: true,
+      required: true,
     },
   },
   methods: {
